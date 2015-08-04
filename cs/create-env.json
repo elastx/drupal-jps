@@ -104,7 +104,7 @@
             "cd /var/www/webroot",
             "git clone --branch 8.0.x http://git.drupal.org/project/drupal.git ROOT",
             "cd ROOT",
-            "drush si standard --db-url=mysql://drupal:${nodes.sqldb.password}@${nodes.sqldb[0].address}/drupal --site-name=\"Elastx Drupal\" --account-name=\"${settings.drupal_email}\" --account-pass=\"${settings.drupal_password}\" --account-mail=\"${settings.drupal_email}\" 2>&1 >/dev/null",
+            "drush -y si standard --db-url=mysql://drupal:${nodes.sqldb.password}@${nodes.sqldb[0].address}/drupal --site-name=\"Elastx Drupal\" --account-name=\"${settings.drupal_email}\" --account-pass=\"${settings.drupal_password}\" --account-mail=\"${settings.drupal_email}\" 2>&1 >/dev/null",
           ]
         }]
       }]
