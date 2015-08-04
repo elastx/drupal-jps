@@ -43,12 +43,12 @@
     },
     "onInstall": {
       "call": [
+        "configureNginx",
         "cleanBeforeSetup",
         "installComposer",
         "installDrush",
         "downloadDrupal",
-        "installDrupal",
-        "configureNginx"
+        "installDrupal"
       ]
     },
     "procedures": [{
@@ -73,7 +73,7 @@
             "cd /var/lib/nginx",
             "mkdir bin",
             "cd bin",
-            "curl -sS https://getcomposer.org/installer | php",
+            "curl -sS https://getcomposer.org/installer | php 2>&1 | tee -a ~/install.log",
             "ln -s composer.phar composer",
             "echo \"export PATH=$PATH:/var/lib/nginx/bin\" >>/var/lib/nginx/.bash_profile",
           ]
@@ -104,7 +104,7 @@
             "cd /var/www/webroot",
             "git clone --branch 8.0.x http://git.drupal.org/project/drupal.git ROOT",
             "cd ROOT",
-            "drush -y si standard --db-url=mysql://drupal:${nodes.sqldb.password}@${nodes.sqldb[0].address}/drupal --site-name=\"Elastx Drupal\" --account-name=\"${settings.drupal_email}\" --account-pass=\"${settings.drupal_password}\" --account-mail=\"${settings.drupal_email}\" 2>&1 >/dev/null",
+            "drush -y si standard --db-url=mysql://drupal:${nodes.sqldb.password}@${nodes.sqldb[0].address}/drupal --site-name=\"Elastx Drupal\" --account-name=\"${settings.drupal_admin}\" --account-pass=\"${settings.drupal_password}\" --account-mail=\"${settings.drupal_email}\" 2>&1 | tee -a ~/install.log",
           ]
         }]
       }]
