@@ -2,10 +2,10 @@
   "jpsType": "install",
   "jpsVersion":"0.3",
   "application": {
-    "name": "Elastx Drupal",
+    "name": "Elastx Drupal 8",
     "version": "0.9",
-    "logo": "https://raw.githubusercontent.com/elastx/drupal-jps/master/img/drupal-logo.png",
-    "homepage": "https://github.com/elastx/drupal-jps",
+    "logo": "https://raw.githubusercontent.com/elastx/drupal8-jps/master/img/drupal-logo.png",
+    "homepage": "https://github.com/elastx/drupal8-jps",
     "description":"Drupal with som performance enhancements",
     "type": "php",
     "settings": {
@@ -102,7 +102,7 @@
             "mysql -uroot -p${nodes.sqldb.password} -h${nodes.sqldb[0].address} -e \"CREATE DATABASE drupal;GRANT ALL PRIVILEGES ON drupal.* TO drupal@'%' IDENTIFIED BY '${nodes.sqldb.password}';\" 2>&1 >/dev/null",
             "rmdir /var/www/webroot/ROOT",
             "cd /var/www/webroot",
-            "git clone --branch 8.0.x http://git.drupal.org/project/drupal.git ROOT",
+            "drush dl drupal-8 --destination=/var/www/webroot/ --drupal-project-rename=ROOT 2>&1 | tee -a ~/install.log",
             "cd ROOT",
             "drush -y si standard --db-url=mysql://drupal:${nodes.sqldb.password}@${nodes.sqldb[0].address}/drupal --site-name=\"Elastx Drupal\" --account-name=\"${settings.drupal_admin}\" --account-pass=\"${settings.drupal_password}\" --account-mail=\"${settings.drupal_email}\" 2>&1 | tee -a ~/install.log",
           ]
@@ -125,7 +125,7 @@
         "executeShellCommands": [{
           "nodeMission": "cp",
           "commands": [
-            "curl -fs https://raw.githubusercontent.com/elastx/drupal-jps/master/conf/nginx/nginx.conf.tpl | sed 's/__DOMAIN/${env.domain}/' > /etc/nginx/nginx.conf",
+            "curl -fs https://raw.githubusercontent.com/elastx/drupal8-jps/master/conf/nginx/nginx.conf.tpl | sed 's/__DOMAIN/${env.domain}/' > /etc/nginx/nginx.conf",
           ]
         }]
       }, {
