@@ -92,8 +92,8 @@
                 "commands": [
                     "cd /var/lib/nginx/bin",
                     "source /var/lib/nginx/.bash_profile",
-                    "composer global require drush/drush:dev-master 2>&1 >/dev/null",
-                    "echo \"export PATH=$PATH:~/.composer/vendor/drush/drush/\" >>/var/lib/nginx/.bash_profile"
+                    "composer global require drush/drush 2>&1 >/dev/null",
+                    "echo \"export PATH=$PATH:~/.config/composer/vendor/bin/\" >>/var/lib/nginx/.bash_profile"
                 ]
               }
             ]
